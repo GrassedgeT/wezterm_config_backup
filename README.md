@@ -1,0 +1,2 @@
+# wezterm_config_backup
+wezterm_backup
