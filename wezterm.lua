@@ -54,7 +54,18 @@ config.keys = {
 	{ key = "7", mods = "ALT", action = act.ActivateTab(6) },
 	{ key = "8", mods = "ALT", action = act.ActivateTab(7) },
 	{ key = "9", mods = "ALT", action = act.ActivateTab(-1) },
-}
+	
+	--close current pane
+	{key = "w", mods = "CTRL | SHIFT", action = act.CloseCurrentPane { confirm = true }},
+
+	--Rotate panes
+	{
+		key = 'b',
+		mods = 'CTRL',
+		action = act.RotatePanes 'CounterClockwise',
+	},
+
+	{ key = 'n', mods = 'CTRL', action = act.RotatePanes 'Clockwise' },}
 config.alternate_buffer_wheel_scroll_speed = 1
 config.font_size = 10
 
@@ -70,5 +81,6 @@ config.mouse_bindings = {
 		action = act.ScrollByLine(3),
 	},
 }
+config.window_background_opacity = 0.95
 -- and finally, return the configuration to wezterm
 return config
