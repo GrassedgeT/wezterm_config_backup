@@ -5,12 +5,25 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
+function get_appearance()
+if wezterm.gui then
+  return wezterm.gui.get_appearance()
+  end
+  return 'Dark'
+end
+  
+function scheme_for_appearance(appearance)
+  if appearance:find 'Dark' then
+    return 'Tokyo Night (Gogh)' 
+  else
+    return 'Tokyo Night Day'
+  end
+end
 
-config.color_scheme = "tokyonight_moon"
-config.font = wezterm.font("Hack Nerd Font")
-config.colors = {
-	tab_bar = {
-		--same as tokyonight_moon
+function tab_bar_color(appearance)
+	if appearance:find 'Dark' then
+	  return {
+		--same as tokyonight_Gogh
 		inactive_tab_edge = "#1f2335",
 		active_tab = {
 			bg_color = "#1f2335",
@@ -28,8 +41,52 @@ config.colors = {
 			bg_color = "#1f2335",
 			fg_color = "#c0caf5",
 		},
-	},
+	}
+	else
+	  return {
+		-- same as tokyonight_day
+		inactive_tab_edge = "#c0caf5",
+		active_tab = {
+			bg_color = "#c0caf5",
+			fg_color = "#1f2335",
+		},
+		inactive_tab = {
+			bg_color = "#c0caf5",
+			fg_color = "#FDFDFD",
+		},
+		inactive_tab_hover = {
+			bg_color = "#444444",
+			fg_color = "#c0caf5",
+		},
+		new_tab = {
+			bg_color = "#c0caf5",
+			fg_color = "#1f2335",
+		},
+	  }
+	end
+end
+
+function winframe_color(appearance)
+	if appearance:find 'Dark' then
+	  return {
+		--same as tokyonight_Gogh
+		active_titlebar_bg = "#1f2335",
+		inactive_titlebar_bg = "#1f2335",
+	}
+	else
+	  return {
+		-- same as tokyonight_day
+		active_titlebar_bg = "E3E3E8",
+		inactive_titlebar_bg = "E3E3E8",
+	  }
+	end
+end
+config.color_scheme = scheme_for_appearance(get_appearance())
+config.font = wezterm.font("Hack Nerd Font")
+config.colors = {
+	tab_bar = tab_bar_color(get_appearance())
 }
+config.window_frame = winframe_color(get_appearance())
 local act = wezterm.action
 config.enable_scroll_bar = true
 config.min_scroll_bar_height = "0.5cell"
