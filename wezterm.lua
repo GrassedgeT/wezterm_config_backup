@@ -25,7 +25,7 @@ config.front_end = "WebGpu"
 -- }
 -- window and tab_bar relative things
 config.use_fancy_tab_bar = false
-config.hide_tab_bar_if_only_one_tab = false
+config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
 config.window_decorations = "TITLE|RESIZE"
 config.window_padding = {
