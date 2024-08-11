@@ -47,6 +47,6 @@ config.macos_window_background_blur = 70
 config.ssh_domains = ssh_domains
 
 -- enable wayland
--- config.enable_wayland = false
+config.enable_wayland = true
 --finally, return the configuration to wezterm
 return config
