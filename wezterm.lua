@@ -1,11 +1,11 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
-require("tab-title").setup()
+-- require("tab-title").setup()
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 local key_config = require("keymaps")
 local theme_config = require("theme")
-
+local ssh_domains = require("ssh_domains")
 print(theme_config.scheme)
 
 -- This is where you actually apply your config choices
@@ -23,11 +23,12 @@ config.front_end = "WebGpu"
 -- 		background = "#292F3C",
 -- 	}
 -- }
+
 -- window and tab_bar relative things
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
-config.window_decorations = "TITLE|RESIZE"
+config.window_decorations = "TITLE | RESIZE"
 config.window_padding = {
 	left = 20,
 	right = 20,
@@ -42,5 +43,11 @@ config.min_scroll_bar_height = "0.5cell"
 config.alternate_buffer_wheel_scroll_speed = 1
 config.window_background_opacity = 0.9
 config.macos_window_background_blur = 70
--- and finally, return the configuration to wezterm
+
+-- domains configurations
+config.ssh_domains = ssh_domains
+
+-- enable wayland
+-- config.enable_wayland = false
+--finally, return the configuration to wezterm
 return config

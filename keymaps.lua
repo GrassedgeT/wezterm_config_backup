@@ -1,10 +1,13 @@
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 local act = wezterm.action
 local keys = {
 	{
 		key = "C",
-		mods = "CTRL",
-		action = act.CopyTo("ClipboardAndPrimarySelection"),
+		mods = "CTRL | SHIFT",
+		action = wezterm.action_callback(function(window, pane)
+			local ansi = window:get_selection_escapes_for_pane(pane)
+			window:copy_to_clipboard(ansi)
+		end),
 	},
 	-- paste from the clipboard
 	{ key = "V", mods = "CTRL | SHIFT", action = act.PasteFrom("Clipboard") },
@@ -23,7 +26,7 @@ local keys = {
 	{ key = "9", mods = "ALT", action = act.ActivateTab(-1) },
 
 	--close current pane
-	{ key = "w", mods = "CTRL | SHIFT", action = act.CloseCurrentPane({ confirm = true }) },
+	{ key = "w", mods = "CTRL", action = act.CloseCurrentPane({ confirm = false }) },
 
 	--Rotate panes
 	{
@@ -36,7 +39,7 @@ local keys = {
 }
 
 local mouse = {
-    {
+	{
 		event = { Down = { streak = 1, button = { WheelUp = 1 } } },
 		mods = "NONE",
 		action = act.ScrollByLine(-3),
@@ -49,6 +52,6 @@ local mouse = {
 }
 
 return {
-    keys = keys,
-    mouse = mouse,
+	keys = keys,
+	mouse = mouse,
 }
