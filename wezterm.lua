@@ -1,6 +1,5 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
--- require("tab-title").setup()
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 local key_config = require("keymaps")
