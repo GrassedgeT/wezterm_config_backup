@@ -16,7 +16,6 @@ config.mouse_bindings = key_config.mouse
 config.color_scheme = theme_config.scheme
 config.font = wezterm.font("Hack Nerd Font")
 config.font_size = 12
-config.front_end = "WebGpu"
 -- config.colors = {
 -- 	tab_bar = {
 -- 		background = "#292F3C",
@@ -27,7 +26,7 @@ config.front_end = "WebGpu"
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
-config.window_decorations = "TITLE | RESIZE"
+config.window_decorations = "None"
 config.window_padding = {
 	left = 20,
 	right = 20,
@@ -45,7 +44,8 @@ config.macos_window_background_blur = 70
 
 -- domains configurations
 config.ssh_domains = ssh_domains
-
+-- render front end
+config.front_end = "WebGpu"
 -- enable wayland
 config.enable_wayland = true
 --finally, return the configuration to wezterm

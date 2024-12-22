@@ -1,16 +1,17 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 local keys = {
-	{
+	--[[{
 		key = "C",
 		mods = "CTRL | SHIFT",
 		action = wezterm.action_callback(function(window, pane)
 			local ansi = window:get_selection_escapes_for_pane(pane)
 			window:copy_to_clipboard(ansi)
 		end),
-	},
-	-- paste from the clipboard
+	},]]
+	--
 	{ key = "V", mods = "CTRL | SHIFT", action = act.PasteFrom("Clipboard") },
+	{ key = "C", mods = "CTRL | SHIFT", action = act.CopyTo("Clipboard") },
 	{ key = "n", mods = "ALT", action = act.SpawnTab("DefaultDomain") },
 	{ key = "q", mods = "ALT", action = act.CloseCurrentTab({ confirm = false }) },
 	{ key = "<", mods = "CTRL | SHIFT", action = act.ActivateTabRelative(-1) },
